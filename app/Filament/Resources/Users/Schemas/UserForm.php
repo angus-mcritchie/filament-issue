@@ -16,13 +16,12 @@ class UserForm
             ->components([
                 TextInput::make('name')
                     ->required(),
+
                 TextInput::make('email')
                     ->email()
                     ->required(),
                 DateTimePicker::make('email_verified_at'),
-                TextInput::make('password')
-                    ->password()
-                    ->required(),
+
                 RichEditor::make('bio')
                     ->columnSpanFull(),
             ]);
