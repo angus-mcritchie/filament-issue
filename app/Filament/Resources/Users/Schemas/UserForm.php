@@ -20,6 +20,7 @@ class UserForm
                 TextInput::make('email')
                     ->email()
                     ->required(),
+
                 DateTimePicker::make('email_verified_at'),
 
                 RichEditor::make('bio')
