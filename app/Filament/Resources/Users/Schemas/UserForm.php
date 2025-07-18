@@ -6,6 +6,7 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 
 class UserForm
@@ -13,18 +14,21 @@ class UserForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
+            ->columns(1)
             ->components([
-                TextInput::make('name')
-                    ->required(),
+                Grid::make(3)
+                    ->schema([
+                        TextInput::make('name')
+                            ->required(),
 
-                TextInput::make('email')
-                    ->email()
-                    ->required(),
+                        TextInput::make('email')
+                            ->email()
+                            ->required(),
 
-                DateTimePicker::make('email_verified_at'),
+                        DateTimePicker::make('email_verified_at'),
+                    ]),
 
                 RichEditor::make('bio')
-                    ->columnSpanFull(),
             ]);
     }
 }
