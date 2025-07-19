@@ -28,6 +28,7 @@ class UserForm
                     ]),
 
                 RichEditor::make('bio')
+                    ->maxLength(10)
             ]);
     }
 }
