@@ -48,4 +48,9 @@ class User extends Authenticatable
             'bio' => NullableHtml::class,
         ];
     }
+
+    public function aliases()
+    {
+        return $this->hasMany(Alias::class);
+    }
 }

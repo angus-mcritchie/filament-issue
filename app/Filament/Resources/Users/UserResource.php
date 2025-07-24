@@ -7,8 +7,10 @@ use App\Filament\Resources\Users\Pages\EditUser;
 use App\Filament\Resources\Users\Pages\ListUsers;
 use App\Filament\Resources\Users\Schemas\UserForm;
 use App\Filament\Resources\Users\Tables\UsersTable;
+use App\Filament\Resources\Users\Pages\ManageUserAliases;
 use App\Models\User;
 use BackedEnum;
+use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -33,8 +35,17 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
         ];
+    }
+
+    /**
+     * @return array<\Filament\Navigation\NavigationItem | \Filament\Navigation\NavigationGroup>
+     */
+    public static function getRecordSubNavigation(Page $page): array
+    {
+        return $page->generateNavigationItems([
+            ManageUserAliases::class,
+        ]);
     }
 
     public static function getPages(): array
@@ -43,6 +54,7 @@ class UserResource extends Resource
             'index' => ListUsers::route('/'),
             'create' => CreateUser::route('/create'),
             'edit' => EditUser::route('/{record}/edit'),
+            'manage-aliases' => ManageUserAliases::route('/{record}/manage-aliases'),
         ];
     }
 }
